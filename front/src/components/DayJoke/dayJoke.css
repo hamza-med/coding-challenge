@@ -1,0 +1,15 @@
+.joke-card {
+  padding: 2rem;
+  border: 2px solid rgba(144, 13, 176, 0.623);
+  border-radius: 16px;
+  background-color: white;
+}
+.joke-title {
+  font-size: 22px;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+.joke-content {
+  font-size: 20px;
+  opacity: 0.9;
+}

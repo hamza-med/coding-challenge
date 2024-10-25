@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/jokes")
 public class JokeController {
     private final JokeService jokeService;
