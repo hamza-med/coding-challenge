@@ -11,6 +11,7 @@ const AllJokes = () => {
   const [allJokes, setAllJokes] = useState([]);
   const [ratingFilter, setRatingFilter] = useState(0);
   const [authorFilter, setAuthorFilter] = useState<string>("");
+  const [sortingOrder, setSortingOrder] = useState("asc");
 
   const authors = useMemo(() => {
     if (allJokes?.length > 0) {
@@ -50,19 +51,39 @@ const AllJokes = () => {
       return ratingFilterMatch && authorFilterMatch;
     });
   }, [ratingFilter, allJokes, authorFilter]);
-
+  const finalJokes = useMemo(() => {
+    if (sortingOrder === "asc") {
+      return filteredJokes?.sort(
+        (a: Joke, b: Joke) => (a?.rating as number) - (b?.rating as number)
+      );
+    } else {
+      return filteredJokes?.sort(
+        (a: Joke, b: Joke) => (b?.rating as number) - (a?.rating as number)
+      );
+    }
+  }, [filteredJokes, sortingOrder]);
   return (
     <div className="all-jokes">
       <div className="all-jokes-header">
         <h2>All jokes ({filteredJokes?.length})</h2>
-        
-        <div className="joke-search">
-          <Search size={18} color="#808080" />
-          <input
-            type="text"
-            onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Search"
-          />
+        <div className="joke-search-container">
+          <select
+            name=""
+            id=""
+            onChange={(e) => setSortingOrder(e.target.value)}
+          >
+            <option value="">Sort by rating</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+          <div className="joke-search">
+            <Search size={18} color="#808080" />
+            <input
+              type="text"
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Search"
+            />
+          </div>
         </div>
       </div>
       <div className="joke-filers">
@@ -102,7 +123,7 @@ const AllJokes = () => {
         </div>
       </div>
       <div className="jokes-container">
-        {filteredJokes?.map((joke: Joke) => (
+        {finalJokes?.map((joke: Joke) => (
           <JokeCard key={joke.id} jokeData={joke} />
         ))}
       </div>
