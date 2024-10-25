@@ -14,8 +14,8 @@ const AllJokes = () => {
 
   const authors = useMemo(() => {
     if (allJokes?.length > 0) {
-      const authors = allJokes?.map((joke: Joke) => joke?.author);
-      return [...new Set(authors)];
+      const allAuthors = allJokes?.map((joke: Joke) => joke?.author);
+      return [...new Set(allAuthors)];
     }
     return [];
   }, [allJokes]);
@@ -41,22 +41,21 @@ const AllJokes = () => {
     }
   }, [isSuccess, jokes]);
   const filteredJokes = useMemo(() => {
-    if (ratingFilter > 0 && allJokes?.length > 0) {
-      return allJokes?.filter((joke: Joke) => {
-        const ratingFilterMatch =
-          ratingFilter === 0 || (joke?.rating as number) >= ratingFilter;
-        const authorFilterMatch =
-          authorFilter === "" || joke?.author === authorFilter;
+    return allJokes?.filter((joke: Joke) => {
+      const ratingFilterMatch =
+        ratingFilter === 0 || (joke?.rating as number) >= ratingFilter;
+      const authorFilterMatch =
+        authorFilter === "" || joke?.author === authorFilter;
 
-        return ratingFilterMatch && authorFilterMatch;
-      });
-    }
+      return ratingFilterMatch && authorFilterMatch;
+    });
   }, [ratingFilter, allJokes, authorFilter]);
 
   return (
     <div className="all-jokes">
       <div className="all-jokes-header">
         <h2>All jokes ({filteredJokes?.length})</h2>
+        
         <div className="joke-search">
           <Search size={18} color="#808080" />
           <input
@@ -72,7 +71,7 @@ const AllJokes = () => {
             onChange={(e) => setAuthorFilter(e.target.value)}
             className="author-select"
           >
-            <option value="">Author</option>
+            <option value="">All authors</option>
             {authors?.map((author: string) => (
               <option key={author} value={author}>
                 {author}

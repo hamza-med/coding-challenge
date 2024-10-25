@@ -1,6 +1,9 @@
 .all-jokes {
   margin-top: 30px;
-  padding: 10px;
+  padding: 1rem;
+  @media only screen and (min-width: 600px) {
+    padding: 2rem;
+  }
   border: 2px solid rgba(144, 13, 176, 0.623);
   border-radius: 16px;
   max-height: 70vh;
@@ -8,12 +11,18 @@
 }
 .all-jokes h2 {
   margin-bottom: 20px;
+  font-size: 1rem;
+  @media only screen and (min-width: 600px) {
+    font-size: 22px;
+  }
 }
 .all-jokes-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px 0px;
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .joke-search {
