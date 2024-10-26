@@ -3,12 +3,14 @@ import "./jokeForm.css";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "../../lib/api";
 import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type Values = {
   author: string;
   joke: string;
 };
 const JokeForm = () => {
+  const navigate = useNavigate();
   const [values, setValues] = useState<Values>({ author: "", joke: "" });
   const [authorError, setAuthorError] = useState<string>("");
   const [jokeError, setJokeError] = useState<string>("");
@@ -58,7 +60,12 @@ const JokeForm = () => {
     if (authorError || jokeError) {
       return;
     }
-    mutate(values);
+    mutate(values, {
+      onSuccess: () => {
+        setValues({ author: "", joke: "" });
+        navigate("/");
+      },
+    });
   };
 
   return (
