@@ -4,7 +4,9 @@ import "./header.css";
 const Header = () => {
   return (
     <nav className="header">
-      <span className="logo">Joke App</span>
+      <span className="logo">
+        <NavLink to="/">Joke App</NavLink>
+      </span>
       <ul className="nav-links" role="list">
         <li>
           <NavLink to="/">Home</NavLink>
