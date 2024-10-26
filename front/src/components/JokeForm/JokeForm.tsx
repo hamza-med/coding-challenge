@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./jokeForm.css";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "../../lib/api";
 
 type Values = {
   author: string;
@@ -7,7 +9,12 @@ type Values = {
 };
 const JokeForm = () => {
   const [values, setValues] = useState<Values>({ author: "", joke: "" });
-  const [error, setError] = useState<string>("");
+  const [authorError, setAuthorError] = useState<string>("");
+  const [jokeError, setJokeError] = useState<string>("");
+  const { mutate } = useMutation({
+    mutationFn: (values: Values) =>
+      api.post("", { author: values.author, content: values.joke }),
+  });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -16,6 +23,31 @@ const JokeForm = () => {
   };
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (!values.author) {
+      setAuthorError("Please fill in the author field");
+    } else if (values.author.length < 3) {
+      setAuthorError("Author name must be at least 3 characters long");
+    } else {
+      setAuthorError("");
+    }
+
+    if (!values.joke) {
+      setJokeError("Please fill in the joke field");
+    } else if (values.joke.length < 10) {
+      setJokeError("Joke content is too short, provide 10 characters at least");
+    } else if (values.joke.length > 300) {
+      setJokeError(
+        "Joke is too long, please keep it shorter than 300 characters"
+      );
+    } else {
+      setJokeError("");
+    }
+
+    if (authorError || jokeError) {
+      return;
+    }
+    mutate(values);
   };
 
   return (
@@ -33,6 +65,7 @@ const JokeForm = () => {
             className="new-joke-form-input"
           />
         </div>
+        {authorError && <p className="error-message">{authorError}</p>}
         <div className="new-joke-form-group">
           <label htmlFor="joke">Joke</label>
           <textarea
@@ -42,6 +75,7 @@ const JokeForm = () => {
             value={values.joke}
           />
         </div>
+        {jokeError && <p className="error-message">{jokeError}</p>}
         <button className="form-button">Submit</button>
       </form>
     </div>
