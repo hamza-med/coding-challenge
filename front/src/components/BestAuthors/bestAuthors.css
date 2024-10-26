@@ -1,0 +1,56 @@
+.all-jokes {
+  margin-top: 30px;
+  padding: 1rem;
+  @media only screen and (min-width: 600px) {
+    padding: 2rem;
+  }
+  border: 2px solid rgba(144, 13, 176, 0.623);
+  border-radius: 16px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+.all-jokes h2 {
+  margin-bottom: 20px;
+  font-size: 1rem;
+  @media only screen and (min-width: 600px) {
+    font-size: 22px;
+  }
+}
+.all-authors-container {
+  display: grid;
+  position: relative;
+  gap: 10px;
+  @media only screen and (min-width: 600px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+.star-rating {
+  display: flex;
+  align-items: center;
+}
+.author-card {
+  padding: 1rem 2rem;
+  border: 1px solid rgba(144, 13, 176, 0.623);
+  border-radius: 16px;
+  background-color: white;
+  min-height: 150px;
+  position: relative;
+  margin-bottom: 10px;
+}
+.author-card .author {
+  font-size: 20px;
+}
+.jokes-number {
+  position: absolute;
+  top: auto;
+  right: 10px;
+  bottom: 10px;
+  font-size: large;
+  color: gray;
+}

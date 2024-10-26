@@ -110,15 +110,22 @@ const AllJokes = () => {
             className="slider"
             id="myRange"
           />
+          <span style={{ position: "absolute", left: 0, top: "20px" }}>0</span>
+          <span style={{ position: "absolute", left: "100%", top: "20px" }}>
+            5
+          </span>
           <span
             style={{
               left: `${ratingFilter * 18}%`,
               position: "absolute",
-              top: "20px",
+              top: "-26px",
               opacity: 0.5,
+              width: "100px",
             }}
           >
-            {ratingFilter}
+            {ratingFilter > 1
+              ? `${ratingFilter} Stars`
+              : `${ratingFilter} Star`}
           </span>
         </div>
       </div>

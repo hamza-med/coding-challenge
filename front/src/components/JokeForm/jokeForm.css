@@ -1,0 +1,51 @@
+.new-joke {
+  width: 350px;
+  border: 1px solid blueviolet;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  gap: 30px;
+}
+.new-joke-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.new-joke-form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.new-joke-form-group label {
+  font-weight: 600;
+  font-size: medium;
+}
+.new-joke-form-group textarea {
+  min-height: 100px;
+  padding: 10px;
+  border: 1px solid blueviolet;
+  border-radius: 4px;
+}
+.new-joke-form-input {
+  height: 30px;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid blueviolet;
+}
+
+.form-button {
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: auto;
+}

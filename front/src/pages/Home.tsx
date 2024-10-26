@@ -1,4 +1,5 @@
 import AllJokes from "../components/AllJokes/AllJokes";
+import BestAuthors from "../components/BestAuthors/BestAuthors";
 import DayJoke from "../components/DayJoke/DayJoke";
 
 function Home() {
@@ -6,6 +7,7 @@ function Home() {
     <>
       <DayJoke />
       <AllJokes />
+      <BestAuthors />
     </>
   );
 }

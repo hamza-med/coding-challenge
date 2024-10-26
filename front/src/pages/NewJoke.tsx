@@ -1,9 +1,11 @@
-
+import JokeForm from "../components/JokeForm/JokeForm";
 
 const NewJoke = () => {
   return (
-    <div>NewJoke</div>
-  )
-}
+    <div className="container">
+      <JokeForm />
+    </div>
+  );
+};
 
-export default NewJoke
+export default NewJoke;
