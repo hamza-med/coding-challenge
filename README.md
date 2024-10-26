@@ -101,7 +101,3 @@ The backend provides the following endpoints to interact with the joke database:
 - **React Router** (6.27.0): Allows for easy navigation and route management in a single-page application setup.
 - **Vite** (5.4.9): Used for its fast build times and efficient bundling, resulting in a quicker development workflow.
 - **Axios** (1.7.7): For making HTTP requests from the frontend.
-
-## Future Improvements
-- Consider adding error boundary components to manage unexpected errors.
-- Add more specific unit tests for critical components.
