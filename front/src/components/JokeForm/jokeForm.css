@@ -47,10 +47,44 @@
   width: 100px;
   border-radius: 5px;
   border: none;
-  background-color: blueviolet;
+  background-color: rgb(138, 44, 226);
   padding: 8px 10px;
   color: white;
   cursor: pointer;
   margin-top: 15px;
   margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.disabled {
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgba(138, 44, 226, 0.5);
+  padding: 8px 10px;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.spin {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

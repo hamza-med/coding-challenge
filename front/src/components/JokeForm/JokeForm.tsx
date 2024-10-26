@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./jokeForm.css";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "../../lib/api";
+import { Loader2 } from "lucide-react";
 
 type Values = {
   author: string;
@@ -11,7 +12,7 @@ const JokeForm = () => {
   const [values, setValues] = useState<Values>({ author: "", joke: "" });
   const [authorError, setAuthorError] = useState<string>("");
   const [jokeError, setJokeError] = useState<string>("");
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: (values: Values) =>
       api.post("", { author: values.author, content: values.joke }),
   });
@@ -19,6 +20,16 @@ const JokeForm = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    if (name === "joke") {
+      if (value.length < 300 && value.length >= 10) {
+        setJokeError("");
+      }
+    }
+    if (name === "author") {
+      if (value.length >= 3) {
+        setAuthorError("");
+      }
+    }
     setValues((prevState) => ({ ...prevState, [name]: value }));
   };
   const handleSubmit = (event: React.FormEvent) => {
@@ -76,7 +87,19 @@ const JokeForm = () => {
           />
         </div>
         {jokeError && <p className="error-message">{jokeError}</p>}
-        <button className="form-button">Submit</button>
+
+        <button
+          className={
+            isPending || authorError || jokeError ? "disabled" : "form-button"
+          }
+        >
+          {isPending && (
+            <p>
+              <Loader2 className="spin" size={20} />
+            </p>
+          )}
+          Submit
+        </button>
       </form>
     </div>
   );
